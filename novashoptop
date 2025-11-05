@@ -1,0 +1,282 @@
+<!--
+Nova ShopTop — One-file responsive storefront + Instagram templates
+Author: ChatGPT (gerado)
+Descrição: Template HTML/CSS/JS pronto para edição. Conteúdo incluído:
+ - Header com logo SVG
+ - Hero com call-to-action
+ - Grid de produtos responsivo (cards)
+ - Modal de produto + carrinho simples (front-end apenas)
+ - Footer com link para Instagram @nova.shoptop e destaques
+ - 6 templates de post para Instagram (componentes prontos como divs que podem ser exportadas via ferramenta de captura)
+
+Como usar:
+ 1) Abra este arquivo no seu editor (VSCode, Sublime, etc.) ou arraste para o navegador.
+ 2) Substitua imagens de placeholder (data-src/*.jpg) pelos arquivos reais.
+ 3) Para publicar, extraia os componentes necessários ou implemente backend/integração com PagSeguro, Mercado Pago, ou links PIX.
+ 4) Se quiser, eu separo em arquivos CSS/JS separados e crio variantes de paleta.
+
+Paleta de cores (padrão):
+  --brand-1: #0B0B0B (preto profundo)
+  --brand-2: #E8AFAF (rosa pó)
+  --accent:   #F6F1EF (off-white)
+  --muted:    #777777
+-->
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nova ShopTop — Loja</title>
+  <meta name="description" content="Loja online Nova ShopTop — moda e acessórios" />
+  <style>
+    :root{
+      --brand-1:#0B0B0B;
+      --brand-2:#E8AFAF;
+      --accent:#F6F1EF;
+      --muted:#777777;
+      --radius:12px;
+      --max-width:1100px;
+      --shadow: 0 6px 20px rgba(11,11,11,0.08);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--brand-1);background:linear-gradient(180deg,var(--accent),#fff);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo svg{width:48px;height:48px}
+    .brand-name{font-weight:700;font-size:18px;letter-spacing:0.4px}
+    .nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--brand-1);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
+    .ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;margin-top:12px}
+    .hero-left h1{font-size:36px;margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px}
+
+    .hero-right{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .product-preview{display:flex;gap:12px;align-items:center}
+    .product-preview img{width:120px;height:120px;border-radius:12px;object-fit:cover}
+
+    /* Products grid */
+    .section{margin-top:28px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:#fff;border-radius:14px;padding:12px;box-shadow:var(--shadow);transition:transform .18s}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+    .card .title{font-weight:600;margin-top:8px}
+    .price{font-weight:700;margin-top:6px}
+    .small{color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:540px){
+      header{padding:12px}
+      .grid{grid-template-columns:1fr}
+      .hero-left h1{font-size:26px}
+      .logo svg{width:40px;height:40px}
+    }
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:18px}
+    .modal{background:#fff;border-radius:14px;padding:18px;max-width:800px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .modal img{width:100%;height:360px;object-fit:cover;border-radius:10px}
+    .qty{display:flex;gap:8px;align-items:center}
+
+    /* Instagram post templates (square) */
+    .ig-templates{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .ig-card{width:320px;height:320px;background:#fff;border-radius:16px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
+    .ig-card .ig-hero{height:160px;border-radius:10px;background:linear-gradient(90deg,#fff,#E8AFAF);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .ig-card h3{margin:8px 0}
+    .tagline{color:var(--muted);font-size:13px}
+
+    /* footer */
+    footer{margin-top:36px;padding:18px 0;color:var(--muted);text-align:center}
+
+    /* small utilities */
+    .flex{display:flex;align-items:center}
+    .space{flex:1}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <!-- Logo SVG simples -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="100" height="100" rx="18" fill="#E8AFAF" />
+          <text x="50" y="56" font-family="Inter, Arial" font-weight="700" font-size="36" text-anchor="middle" fill="#0B0B0B">NS</text>
+        </svg>
+        <div>
+          <div class="brand-name">Nova ShopTop</div>
+          <div class="small">Moda • Acessórios • Entrega BR</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="ghost" href="#produtos">Produtos</a>
+        <a class="ghost" href="#ig">Posts</a>
+        <a class="btn" href="#">Compre Agora</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Descubra sua nova peça favorita</h1>
+        <p>Peças selecionadas com cuidado — tendências atuais, entrega rápida e atendimento pessoal via WhatsApp.</p>
+        <div class="cta-row">
+          <a class="btn" href="#produtos">Ver coleção</a>
+          <a class="ghost" href="#">Sobre</a>
+        </div>
+
+        <div class="section">
+          <h3>Novidades</h3>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <div class="small" style="background:#fff;padding:8px;border-radius:8px;box-shadow:var(--shadow)">Frete grátis nos 1ºs 50 pedidos</div>
+            <div class="small" style="background:#fff;padding:8px;border-radius:8px;box-shadow:var(--shadow)">Troca em 7 dias</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div style="font-weight:700;margin-bottom:8px">Lançamento</div>
+        <div class="product-preview">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%23E8AFAF'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='28' fill='%230B0B0B'>Imagem</text></svg>" alt="preview" />
+          <div>
+            <div style="font-weight:700">Vestido Rosé</div>
+            <div class="small">Tamanhos P/M/G</div>
+            <div style="margin-top:10px"><button class="btn" onclick="openModal(0)">Ver detalhes</button></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="section">
+      <h2>Produtos em destaque</h2>
+      <div class="grid" id="productGrid">
+        <!-- Cards gerados por JS -->
+      </div>
+    </section>
+
+    <!-- Instagram templates -->
+    <section id="ig" class="section">
+      <h2>Templates para posts (Prontos)</h2>
+      <p class="small">São blocos prontos que você pode capturar/exportar como imagens para postar no Instagram. Substitua textos e imagens conforme necessário.</p>
+      <div class="ig-templates" id="igTemplates"></div>
+    </section>
+
+    <footer>
+      <div class="small">Siga no Instagram: <a href="https://instagram.com/nova.shoptop" target="_blank">@nova.shoptop</a> • Contato: WhatsApp</div>
+      <div style="margin-top:8px">© Nova ShopTop — Todos os direitos reservados</div>
+    </footer>
+  </div>
+
+  <!-- Modal de produto -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <img id="modalImg" src="" alt="produto" />
+      <div>
+        <h3 id="modalTitle">Título</h3>
+        <div id="modalDesc" class="small">Descrição do produto aqui.</div>
+        <div style="margin-top:12px;font-weight:700" id="modalPrice">R$ 0,00</div>
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+          <div class="qty">
+            <button onclick="changeQty(-1)">-</button>
+            <div id="qtyVal" style="padding:6px 10px;border-radius:8px;background:#fff;box-shadow:var(--shadow);min-width:28px;text-align:center">1</div>
+            <button onclick="changeQty(1)">+</button>
+          </div>
+          <button class="btn" onclick="addToCart()">Adicionar ao carrinho</button>
+        </div>
+        <div style="margin-top:12px" class="small">Envio estimado: 3-7 dias úteis</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dados de exemplo — substitua pelos seus produtos reais
+    const products = [
+      {id:0,title:'Vestido Rosé',price:129.90,desc:'Vestido leve, ideal para o dia a dia.',img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
+      {id:1,title:'Blusa Cropped',price:79.90,desc:'Cropped com tecido confortável.',img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
+      {id:2,title:'Calça Wide Leg',price:149.90,desc:'Calça com caimento fluido.',img:'https://images.unsplash.com/photo-1520975918911-85f5a7f4f7d5?auto=format&fit=crop&w=800&q=60'},
+      {id:3,title:'Bolsa tiracolo',price:199.90,desc:'Bolsa prática para o dia a dia.',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=60'},
+      {id:4,title:'T-shirt Básica',price:49.90,desc:'Camiseta básica confortável.',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
+      {id:5,title:'Sandália Rasteira',price:89.90,desc:'Sandália versátil para várias ocasiões.',img:'https://images.unsplash.com/photo-1526178614460-7a9d3b1d6b2e?auto=format&fit=crop&w=800&q=60'},
+      {id:6,title:'Maxi Colar',price:69.90,desc:'Colar statement para completar o look.',img:'https://images.unsplash.com/photo-1520975918911-85f5a7f4f7d5?auto=format&fit=crop&w=800&q=60'},
+      {id:7,title:'Jaqueta Jeans',price:219.90,desc:'Jaqueta com modelagem moderna.',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'}
+    ];
+
+    const igTemplatesData = [
+      {title:'Lançamento',tag:'Nova coleção',cta:'Compre agora'},
+      {title:'Promoção',tag:'-20% OFF',cta:'Use o cupom: NOVA20'},
+      {title:'Look do dia',tag:'Inspiração',cta:'Marque @nova.shoptop'},
+      {title:'Detalhe',tag:'Textura e tecido',cta:'Veja detalhes'},
+      {title:'Depoimento',tag:'Cliente feliz',cta:'Avalie-nos'},
+      {title:'Frete',tag:'Frete grátis',cta:'Só hoje'}
+    ];
+
+    // Render products
+    const grid = document.getElementById('productGrid');
+    products.forEach(p=>{
+      const card = document.createElement('div'); card.className='card';
+      card.innerHTML = `
+        <img loading="lazy" src="${p.img}" alt="${p.title}" />
+        <div class="title">${p.title}</div>
+        <div class="small">${p.desc}</div>
+        <div class="price">R$ ${p.price.toFixed(2)}</div>
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <button class="ghost" onclick="openModal(${p.id})">Ver</button>
+          <button class="btn" onclick="quickAdd(${p.id})">Comprar</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Render IG templates
+    const igRoot = document.getElementById('igTemplates');
+    igTemplatesData.forEach(t=>{
+      const el = document.createElement('div'); el.className='ig-card';
+      el.innerHTML = `
+        <div class="ig-hero">${t.tag}</div>
+        <div>
+          <h3>${t.title}</h3>
+          <div class="tagline">${t.cta}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="small">@nova.shoptop</div>
+          <div class="small">www.nova-shoptop.com</div>
+        </div>
+      `;
+      igRoot.appendChild(el);
+    });
+
+    // Modal logic
+    let currentQty = 1; let currentId = null;
+    function openModal(id){
+      const p = products.find(x=>x.id===id);
+      currentQty = 1; currentId = id;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('modalTitle').innerText = p.title;
+      document.getElementById('modalDesc').innerText = p.desc;
+      document.getElementById('modalPrice').innerText = 'R$ '+p.price.toFixed(2);
+      document.getElementById('qtyVal').innerText = currentQty;
+      document.getElementById('modalBackdrop').style.display = 'flex';
+    }
+    document.getElementById('modalBackdrop').addEventListener('click',function(e){ if(e.target===this) this.style.display='none'; });
+    function changeQty(delta){ currentQty = Math.max(1,currentQty+delta); document.getElementById('qtyVal').innerText=currentQty }
+    function addToCart(){ alert('Adicionado '+currentQty+' unidade(s) ao carrinho — integração de pagamento não implementada.'); document.getElementById('modalBackdrop').style.display='none' }
+    function quickAdd(id){ const p = products.find(x=>x.id===id); alert('Compra rápida: '+p.title+' — implementar checkout.'); }
+
+  </script>
+</body>
+</html>
