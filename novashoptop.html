@@ -1,282 +1,260 @@
-<!--
-Nova ShopTop — One-file responsive storefront + Instagram templates
-Author: ChatGPT (gerado)
-Descrição: Template HTML/CSS/JS pronto para edição. Conteúdo incluído:
- - Header com logo SVG
- - Hero com call-to-action
- - Grid de produtos responsivo (cards)
- - Modal de produto + carrinho simples (front-end apenas)
- - Footer com link para Instagram @nova.shoptop e destaques
- - 6 templates de post para Instagram (componentes prontos como divs que podem ser exportadas via ferramenta de captura)
-
-Como usar:
- 1) Abra este arquivo no seu editor (VSCode, Sublime, etc.) ou arraste para o navegador.
- 2) Substitua imagens de placeholder (data-src/*.jpg) pelos arquivos reais.
- 3) Para publicar, extraia os componentes necessários ou implemente backend/integração com PagSeguro, Mercado Pago, ou links PIX.
- 4) Se quiser, eu separo em arquivos CSS/JS separados e crio variantes de paleta.
-
-Paleta de cores (padrão):
-  --brand-1: #0B0B0B (preto profundo)
-  --brand-2: #E8AFAF (rosa pó)
-  --accent:   #F6F1EF (off-white)
-  --muted:    #777777
--->
-
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nova ShopTop — Loja</title>
-  <meta name="description" content="Loja online Nova ShopTop — moda e acessórios" />
+  <title>O Livro Proibido de Cantares — eBook Oficial</title>
+  <meta name="description" content="O livro proibido de Cantares: explícito para o casamento — desejo, sexo e fogo! eBook para casais que querem reacender a chama." />
   <style>
     :root{
-      --brand-1:#0B0B0B;
-      --brand-2:#E8AFAF;
-      --accent:#F6F1EF;
-      --muted:#777777;
-      --radius:12px;
-      --max-width:1100px;
-      --shadow: 0 6px 20px rgba(11,11,11,0.08);
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --bg:#070707;
+      --gold:#D4AF37;
+      --red:#A82A2A;
+      --muted:#cfcfcf;
+      --card:#0f0f0f;
+      --radius:14px;
+      --shadow: 0 14px 40px rgba(0,0,0,0.6);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color-scheme: dark;
     }
     *{box-sizing:border-box}
-    body{margin:0;color:var(--brand-1);background:linear-gradient(180deg,var(--accent),#fff);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #060606 0%, #0b0b0b 100%);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
 
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo svg{width:48px;height:48px}
-    .brand-name{font-weight:700;font-size:18px;letter-spacing:0.4px}
-    .nav{display:flex;gap:12px;align-items:center}
-    .btn{background:var(--brand-1);color:#fff;padding:10px 14px;border-radius:10px;font-weight:600}
-    .ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px}
+    .wrap{max-width:1100px;margin:28px auto;padding:28px;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{
+      width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg,var(--card),#0b0b0b);box-shadow:var(--shadow);
+      font-weight:800;color:var(--gold);font-size:20px;
+    }
+    .brand .title{font-weight:700;color:var(--gold);letter-spacing:0.6px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--gold),var(--red));color:#080808;padding:10px 16px;border-radius:10px;}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;margin-top:12px}
-    .hero-left h1{font-size:36px;margin:0 0 12px}
-    .hero-left p{color:var(--muted);margin:0 0 18px}
-    .cta-row{display:flex;gap:12px}
+    .hero{
+      display:grid;grid-template-columns: 1fr 1fr;gap:32px;align-items:center;margin-top:8px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0));
+      padding:26px;border-radius:18px;
+    }
+    .hero-left{text-align:left;padding:12px}
+    .cover{
+      width:100%;max-width:420px;margin:0 auto;display:block;border-radius:12px;box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .eyebrow{color:var(--gold);font-weight:700;letter-spacing:0.8px;margin-bottom:12px}
+    h1{color:var(--gold);font-size:30px;margin:0 0 12px;line-height:1.08}
+    .subtitle{color:var(--muted);font-size:16px;margin-bottom:18px}
+    .price{font-size:28px;color:var(--gold);font-weight:700;margin:10px 0}
+    .btn{
+      display:inline-block;background:linear-gradient(90deg,var(--gold),var(--red));color:#080808;padding:14px 22px;border-radius:999px;font-weight:700;
+      text-decoration:none;box-shadow:0 10px 30px rgba(168,42,42,0.12);transition:transform .16s ease;
+    }
+    .btn:hover{transform:translateY(-4px)}
+    .mini-cta{display:inline-block;margin-left:14px;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);text-decoration:none}
 
-    .hero-right{background:#fff;border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-    .product-preview{display:flex;gap:12px;align-items:center}
-    .product-preview img{width:120px;height:120px;border-radius:12px;object-fit:cover}
+    .benefits{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:12px}
+    .benefits h3{color:var(--gold);margin:0 0 10px}
+    .list{margin-top:8px}
+    .list p{margin:8px 0;color:var(--muted)}
 
-    /* Products grid */
-    .section{margin-top:28px}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .card{background:#fff;border-radius:14px;padding:12px;box-shadow:var(--shadow);transition:transform .18s}
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:220px;object-fit:cover;border-radius:10px}
-    .card .title{font-weight:600;margin-top:8px}
-    .price{font-weight:700;margin-top:6px}
-    .small{color:var(--muted);font-size:13px}
+    .blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+    .block{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .block h4{color:var(--gold);margin-bottom:8px}
+    .block p{color:var(--muted);font-size:15px}
 
-    /* Responsive */
-    @media (max-width:1000px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:repeat(2,1fr)}
+    .testimonials{margin-top:26px;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .testimonials h3{color:var(--gold);margin-bottom:12px}
+    .quote{font-style:italic;color:#e8e0d6;margin-bottom:8px}
+
+    footer{margin-top:36px;text-align:center;color:rgba(255,255,255,0.5);font-size:14px;padding-bottom:30px}
+
+    .sticky-cta{display:none;position:fixed;left:16px;right:16px;bottom:16px;background:linear-gradient(90deg,var(--gold),var(--red));padding:12px;border-radius:999px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    .sticky-cta a{color:#080808;font-weight:800;text-decoration:none}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .wrap{padding:18px}
+      .blocks{grid-template-columns:1fr}
+      .brand .logo{width:48px;height:48px}
+      nav{display:none}
     }
     @media (max-width:540px){
-      header{padding:12px}
-      .grid{grid-template-columns:1fr}
-      .hero-left h1{font-size:26px}
-      .logo svg{width:40px;height:40px}
+      h1{font-size:22px}
+      .price{font-size:22px}
+      .sticky-cta{display:block}
     }
-
-    /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:18px}
-    .modal{background:#fff;border-radius:14px;padding:18px;max-width:800px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .modal img{width:100%;height:360px;object-fit:cover;border-radius:10px}
-    .qty{display:flex;gap:8px;align-items:center}
-
-    /* Instagram post templates (square) */
-    .ig-templates{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-    .ig-card{width:320px;height:320px;background:#fff;border-radius:16px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
-    .ig-card .ig-hero{height:160px;border-radius:10px;background:linear-gradient(90deg,#fff,#E8AFAF);display:flex;align-items:center;justify-content:center;font-weight:700}
-    .ig-card h3{margin:8px 0}
-    .tagline{color:var(--muted);font-size:13px}
-
-    /* footer */
-    footer{margin-top:36px;padding:18px 0;color:var(--muted);text-align:center}
-
-    /* small utilities */
-    .flex{display:flex;align-items:center}
-    .space{flex:1}
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrap">
     <header>
-      <div class="logo">
-        <!-- Logo SVG simples -->
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="100" height="100" rx="18" fill="#E8AFAF" />
-          <text x="50" y="56" font-family="Inter, Arial" font-weight="700" font-size="36" text-anchor="middle" fill="#0B0B0B">NS</text>
-        </svg>
+      <div class="brand">
+        <div class="logo">NS</div>
         <div>
-          <div class="brand-name">Nova ShopTop</div>
-          <div class="small">Moda • Acessórios • Entrega BR</div>
+          <div class="title">Nova ShopTop</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45)">Edição limitada • eBook</div>
         </div>
       </div>
 
-      <nav class="nav">
-        <a class="ghost" href="#produtos">Produtos</a>
-        <a class="ghost" href="#ig">Posts</a>
-        <a class="btn" href="#">Compre Agora</a>
+      <nav>
+        <a href="#porque">Por que ler</a>
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a class="cta" href="#comprar-top">Comprar</a>
       </nav>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-left">
-        <h1>Descubra sua nova peça favorita</h1>
-        <p>Peças selecionadas com cuidado — tendências atuais, entrega rápida e atendimento pessoal via WhatsApp.</p>
-        <div class="cta-row">
-          <a class="btn" href="#produtos">Ver coleção</a>
-          <a class="ghost" href="#">Sobre</a>
-        </div>
+    <!-- Imagem destacada no topo -->
+    <div style="
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  display:flex;justify-content:center;align-items:center;
+">
+  <img 
+    src="https://raw.githubusercontent.com/novashoptop/novashoptop/main/imagems1.png"
+    alt="Capa do eBook O Livro Proibido de Cantares"
+    style="width:100%;height:auto;object-fit:cover;display:block;"
+  />
+</div>
 
-        <div class="section">
-          <h3>Novidades</h3>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <div class="small" style="background:#fff;padding:8px;border-radius:8px;box-shadow:var(--shadow)">Frete grátis nos 1ºs 50 pedidos</div>
-            <div class="small" style="background:#fff;padding:8px;border-radius:8px;box-shadow:var(--shadow)">Troca em 7 dias</div>
-          </div>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="produto-titulo">
+      <div class="hero-left">
+        <div class="eyebrow">Edição Especial • Limitada</div>
+        <h1 id="produto-titulo">O livro proibido de Cantares:<br /><span style="font-weight:800">explícito para o casamento — desejo, sexo e fogo!</span></h1>
+
+        <p class="subtitle">Um texto ousado que reconecta paixão e espiritualidade — um convite para casais que querem viver a intimidade em sua forma mais poderosa.</p>
+
+        <div class="price">R$ 49,90</div>
+
+        <div style="margin-top:14px">
+          <a id="comprar-top" class="btn" href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')">🔥 Comprar Agora</a>
+          <a class="mini-cta" href="#porque">Saiba mais</a>
         </div>
       </div>
 
-      <aside class="hero-right">
-        <div style="font-weight:700;margin-bottom:8px">Lançamento</div>
-        <div class="product-preview">
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%23E8AFAF'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='28' fill='%230B0B0B'>Imagem</text></svg>" alt="preview" />
-          <div>
-            <div style="font-weight:700">Vestido Rosé</div>
-            <div class="small">Tamanhos P/M/G</div>
-            <div style="margin-top:10px"><button class="btn" onclick="openModal(0)">Ver detalhes</button></div>
-          </div>
+      <aside class="benefits">
+        <h3>Por que este eBook é diferente</h3>
+        <div class="list">
+          <p><strong>Interpretação reveladora:</strong> Leitura poética e direta de Cantares de Salomão, focada em casais.</p>
+          <p><strong>Equilíbrio entre fé e desejo:</strong> Passagens que legitimam o prazer como expressão sagrada do amor conjugal.</p>
+          <p><strong>Exercícios práticos:</strong> Rituais, reflexões e exercícios para reacender a intimidade hoje mesmo.</p>
+        </div>
+
+        <div style="margin-top:20px">
+          <h4 style="color:var(--gold);margin-bottom:8px">Garantia</h4>
+          <p style="color:var(--muted)">Satisfação ou reembolso em até 7 dias (política simples — ver condições no e-mail de compra).</p>
         </div>
       </aside>
     </section>
 
-    <!-- Produtos -->
-    <section id="produtos" class="section">
-      <h2>Produtos em destaque</h2>
-      <div class="grid" id="productGrid">
-        <!-- Cards gerados por JS -->
+    <div class="blocks" aria-hidden="false">
+      <div class="block" id="porque">
+        <h4>Desejo redescoberto</h4>
+        <p>Este livro não é apenas teoria. Ele traz práticas concretas para que você e seu cônjuge troquem intimidade, vulnerabilidade e prazer com segurança e profundidade.</p>
+        <div style="margin-top:12px"><a class="btn" href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')">Comprar Agora</a></div>
       </div>
+
+      <div class="block" id="conteudo">
+        <h4>Conteúdo transformador</h4>
+        <p>Capítulos curtos, exercícios noturnos, meditações para casais e interpretações históricas que libertam o erotismo sagrado de tabu e culpa.</p>
+        <div style="margin-top:12px"><a class="btn" href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')">Comprar Agora</a></div>
+      </div>
+
+      <div class="block">
+        <h4>Para quem busca resultado</h4>
+        <p>Indicado para casais em todas as fases: recém-casados, anos de convivência, ou aqueles que desejam reavivar uma conexão perdida.</p>
+        <div style="margin-top:12px"><a class="btn" href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')">Comprar Agora</a></div>
+      </div>
+    </div>
+
+    <section class="testimonials" id="depoimentos">
+      <h3>Depoimentos</h3>
+      <div class="quote">"Leitura intensa — resgatou nossa intimidade e trouxe diálogo ao casamento." — M. & J.</div>
+      <div class="quote">"Um olhar poético e sagrado sobre o desejo — recomendo a todos os casais." — Aline R.</div>
+      <p style="color:var(--muted);font-size:13px;margin-top:8px">Depoimentos reais de leitores. Resultados variam conforme dedicação e aplicação dos exercícios.</p>
     </section>
 
-    <!-- Instagram templates -->
-    <section id="ig" class="section">
-      <h2>Templates para posts (Prontos)</h2>
-      <p class="small">São blocos prontos que você pode capturar/exportar como imagens para postar no Instagram. Substitua textos e imagens conforme necessário.</p>
-      <div class="ig-templates" id="igTemplates"></div>
+    <section style="margin-top:20px;text-align:center">
+      <h3 style="color:var(--gold)">Garanta sua cópia — Edição digital</h3>
+      <p style="color:var(--muted);max-width:720px;margin:8px auto 16px">Receba o eBook instantaneamente após a compra. Download seguro via link privado. Suporte por e-mail e WhatsApp.</p>
+      <a class="btn" href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')" style="font-size:18px;padding:14px 28px">🕯️ Comprar o eBook — R$ 49,90</a>
     </section>
 
     <footer>
-      <div class="small">Siga no Instagram: <a href="https://instagram.com/nova.shoptop" target="_blank">@nova.shoptop</a> • Contato: WhatsApp</div>
-      <div style="margin-top:8px">© Nova ShopTop — Todos os direitos reservados</div>
+      © <span id="ano"></span> Nova ShopTop • Todos os direitos reservados — eBook digital.<br>
+      Siga no Instagram: <a href="https://instagram.com/nova.shoptop" target="_blank" style="color:var(--gold);text-decoration:none">@nova.shoptop</a>
     </footer>
   </div>
 
-  <!-- Modal de produto -->
-  <div id="modalBackdrop" class="modal-backdrop">
-    <div class="modal">
-      <img id="modalImg" src="" alt="produto" />
-      <div>
-        <h3 id="modalTitle">Título</h3>
-        <div id="modalDesc" class="small">Descrição do produto aqui.</div>
-        <div style="margin-top:12px;font-weight:700" id="modalPrice">R$ 0,00</div>
-        <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
-          <div class="qty">
-            <button onclick="changeQty(-1)">-</button>
-            <div id="qtyVal" style="padding:6px 10px;border-radius:8px;background:#fff;box-shadow:var(--shadow);min-width:28px;text-align:center">1</div>
-            <button onclick="changeQty(1)">+</button>
-          </div>
-          <button class="btn" onclick="addToCart()">Adicionar ao carrinho</button>
-        </div>
-        <div style="margin-top:12px" class="small">Envio estimado: 3-7 dias úteis</div>
-      </div>
-    </div>
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#" onclick="event.preventDefault(); comprarAgora('ID_PRODUTO_APPMAX')">Comprar agora • R$ 49,90</a>
   </div>
 
   <script>
-    // Dados de exemplo — substitua pelos seus produtos reais
-    const products = [
-      {id:0,title:'Vestido Rosé',price:129.90,desc:'Vestido leve, ideal para o dia a dia.',img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
-      {id:1,title:'Blusa Cropped',price:79.90,desc:'Cropped com tecido confortável.',img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
-      {id:2,title:'Calça Wide Leg',price:149.90,desc:'Calça com caimento fluido.',img:'https://images.unsplash.com/photo-1520975918911-85f5a7f4f7d5?auto=format&fit=crop&w=800&q=60'},
-      {id:3,title:'Bolsa tiracolo',price:199.90,desc:'Bolsa prática para o dia a dia.',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=60'},
-      {id:4,title:'T-shirt Básica',price:49.90,desc:'Camiseta básica confortável.',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
-      {id:5,title:'Sandália Rasteira',price:89.90,desc:'Sandália versátil para várias ocasiões.',img:'https://images.unsplash.com/photo-1526178614460-7a9d3b1d6b2e?auto=format&fit=crop&w=800&q=60'},
-      {id:6,title:'Maxi Colar',price:69.90,desc:'Colar statement para completar o look.',img:'https://images.unsplash.com/photo-1520975918911-85f5a7f4f7d5?auto=format&fit=crop&w=800&q=60'},
-      {id:7,title:'Jaqueta Jeans',price:219.90,desc:'Jaqueta com modelagem moderna.',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'}
-    ];
+    document.getElementById('ano').innerText = new Date().getFullYear();
 
-    const igTemplatesData = [
-      {title:'Lançamento',tag:'Nova coleção',cta:'Compre agora'},
-      {title:'Promoção',tag:'-20% OFF',cta:'Use o cupom: NOVA20'},
-      {title:'Look do dia',tag:'Inspiração',cta:'Marque @nova.shoptop'},
-      {title:'Detalhe',tag:'Textura e tecido',cta:'Veja detalhes'},
-      {title:'Depoimento',tag:'Cliente feliz',cta:'Avalie-nos'},
-      {title:'Frete',tag:'Frete grátis',cta:'Só hoje'}
-    ];
+    async function comprarAgora(productId){
+      try{
+        if(!productId || productId === 'ID_PRODUTO_APPMAX'){
+          alert('Substitua ID_PRODUTO_APPMAX pelo ID real do produto na Appmax antes de usar o botão de compra.');
+          return;
+        }
 
-    // Render products
-    const grid = document.getElementById('productGrid');
-    products.forEach(p=>{
-      const card = document.createElement('div'); card.className='card';
-      card.innerHTML = `
-        <img loading="lazy" src="${p.img}" alt="${p.title}" />
-        <div class="title">${p.title}</div>
-        <div class="small">${p.desc}</div>
-        <div class="price">R$ ${p.price.toFixed(2)}</div>
-        <div style="margin-top:8px;display:flex;gap:8px">
-          <button class="ghost" onclick="openModal(${p.id})">Ver</button>
-          <button class="btn" onclick="quickAdd(${p.id})">Comprar</button>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+        const APPMAX_ENDPOINT = 'https://api.appmax.com.br/v1/checkout/create';
+        const AUTH_TOKEN = 'SEU_TOKEN_DE_AUTENTICACAO';
 
-    // Render IG templates
-    const igRoot = document.getElementById('igTemplates');
-    igTemplatesData.forEach(t=>{
-      const el = document.createElement('div'); el.className='ig-card';
-      el.innerHTML = `
-        <div class="ig-hero">${t.tag}</div>
-        <div>
-          <h3>${t.title}</h3>
-          <div class="tagline">${t.cta}</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div class="small">@nova.shoptop</div>
-          <div class="small">www.nova-shoptop.com</div>
-        </div>
-      `;
-      igRoot.appendChild(el);
-    });
+        const payload = { productId: productId, quantity: 1 };
 
-    // Modal logic
-    let currentQty = 1; let currentId = null;
-    function openModal(id){
-      const p = products.find(x=>x.id===id);
-      currentQty = 1; currentId = id;
-      document.getElementById('modalImg').src = p.img;
-      document.getElementById('modalTitle').innerText = p.title;
-      document.getElementById('modalDesc').innerText = p.desc;
-      document.getElementById('modalPrice').innerText = 'R$ '+p.price.toFixed(2);
-      document.getElementById('qtyVal').innerText = currentQty;
-      document.getElementById('modalBackdrop').style.display = 'flex';
+        const resp = await fetch(APPMAX_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + AUTH_TOKEN
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if(!resp.ok){
+          const txt = await resp.text();
+          console.error('Erro Appmax:', resp.status, txt);
+          alert('Erro ao iniciar o checkout. Verifique as configurações da Appmax.');
+          return;
+        }
+
+        const data = await resp.json();
+        if(data && data.checkoutUrl){
+          window.location.href = data.checkoutUrl;
+        } else {
+          console.warn('Resposta inesperada:', data);
+          alert('Verifique a resposta da API Appmax.');
+        }
+
+      }catch(err){
+        console.error('Erro ao chamar comprarAgora:', err);
+        alert('Ocorreu um erro ao iniciar o checkout.');
+      }
     }
-    document.getElementById('modalBackdrop').addEventListener('click',function(e){ if(e.target===this) this.style.display='none'; });
-    function changeQty(delta){ currentQty = Math.max(1,currentQty+delta); document.getElementById('qtyVal').innerText=currentQty }
-    function addToCart(){ alert('Adicionado '+currentQty+' unidade(s) ao carrinho — integração de pagamento não implementada.'); document.getElementById('modalBackdrop').style.display='none' }
-    function quickAdd(id){ const p = products.find(x=>x.id===id); alert('Compra rápida: '+p.title+' — implementar checkout.'); }
 
+    function checkSticky(){
+      const s = document.getElementById('stickyCta');
+      s.style.display = (window.innerWidth <= 540) ? 'block' : 'none';
+    }
+    window.addEventListener('resize', checkSticky);
+    checkSticky();
   </script>
 </body>
 </html>
